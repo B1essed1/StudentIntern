@@ -1,24 +1,21 @@
 package com.example.studentintern.StudentIntern.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-public class Student {
+@Data
+public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    private String secondName;
+    @Lob
+    private byte[] image;
 
     @OneToOne
-    private Image image;
-
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
+    private Student student;
 }
