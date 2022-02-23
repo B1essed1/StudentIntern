@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -13,11 +14,18 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String name;
 
     private String secondName;
 
+    private Date date;
+
+    private Double code;
+
+    private String location;
+
     @Lob
-    private byte[] image;
+    private Byte[] image ;
+
 }
