@@ -1,0 +1,2 @@
+${application-description} = for the internship purposes
+${application-version} = 1.0.2
