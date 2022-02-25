@@ -51,9 +51,10 @@ public class StudentController {
                 .path("/{id}")
                 .buildAndExpand(student1.getId()).toUri();
 
-
         return ResponseEntity.ok(location);
     }
+
+
 
     @PutMapping("update/student/{id}")
     public ResponseEntity<?> updateStudentById(@PathVariable("id") Long id , @RequestBody Student student){

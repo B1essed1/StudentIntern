@@ -16,13 +16,13 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String username;
 
     private String secondName;
 
     private String createdTime;
 
-    private String code;
+    private String password;
 
     private String location;
 
@@ -30,9 +30,25 @@ public class Student {
     private Byte[] image ;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="student")
-    @JsonManagedReference
+    @JsonManagedReference(value = "schedule")
     private List<Schedules> schedules = new ArrayList<>();
 
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    } ,fetch = FetchType.EAGER)
 
+    @JoinTable(
+            name = "student_roles",
+            joinColumns = @JoinColumn(
+                    name = "student_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id",
+                    referencedColumnName = "id"
+            )
+    )
+    private Collection<Role>  roles  = new ArrayList<>();
 
 }

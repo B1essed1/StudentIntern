@@ -24,7 +24,7 @@ public class Schedules {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id" , referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference(value = "schedule")
     private Student student;
 
 
