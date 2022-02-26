@@ -5,12 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Getter
 @Setter
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,9 +47,9 @@ public class Student {
             ),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id",
-                    referencedColumnName = "id"
+                    referencedColumnName = "name"
             )
     )
-    private Collection<Role>  roles  = new ArrayList<>();
+    private Set<Role>  roles  = new HashSet<>();
 
 }

@@ -30,6 +30,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role getRoleByName(String name) {
+        return roleRepository.findByName(name);
+    }
+
+    @Override
     public void addRoleToUser(Long studentId, String roleName) {
 
         Student student = studentService.getStudentsById(studentId);

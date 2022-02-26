@@ -1,6 +1,5 @@
 package com.example.studentintern.security;
 
-import com.example.studentintern.security.filter.CustomAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,15 +25,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         /**
              *user detailsService interface  takes Users name and finds in Db
          **/
+
+
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeHttpRequests().anyRequest().permitAll();
-        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+        http.authorizeHttpRequests()
+                        .antMatchers("/api/intern/save/students/info").permitAll()
+                        .antMatchers("api/intern/*").hasRole("MANAGER")
+                        .antMatchers("api/intern/*").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                        .and()
+                .formLogin();
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.studentintern.controller;
 
 import com.example.studentintern.entity.Role;
+import com.example.studentintern.model.RoleToSudent;
 import com.example.studentintern.repository.RoleRepository;
 import com.example.studentintern.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +31,9 @@ public class RoleController {
     }
 
     @PostMapping("/add/role")
-    public ResponseEntity<?> addRoleToStudent(@RequestBody Role role){
+    public ResponseEntity<?> addRoleToStudent(@RequestBody RoleToSudent role){
         log.info("{}  name should be here " ,role.getName());
-        log.info("{} id  should be here " ,role.getId());
+
 
         String name = role.getName();
         roleService.addRoleToUser(role.getId(), name);
