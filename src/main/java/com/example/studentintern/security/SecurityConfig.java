@@ -19,6 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -35,19 +37,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeHttpRequests()
                         .antMatchers("/api/intern/save/students/info").permitAll()
-                        .antMatchers("api/intern/*").hasRole("MANAGER")
-                        .antMatchers("api/intern/*").hasRole("ADMIN")
+                        .antMatchers("/api/intern/login").permitAll()
+                        .antMatchers("/api/intern/*").hasRole("MANAGER")
+                        .antMatchers("/api/intern/*").hasRole("ADMIN")
                         .anyRequest().authenticated()
                         .and()
-                .formLogin();
+                .apply(new JwtConfigurer(jwtTokenProvider));
+
     }
+
 
 
     @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
     }
-
 
 }

@@ -15,9 +15,11 @@ public class StudentInternApplication {
 
     }
 
+/*
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+*/
 
 }
