@@ -3,6 +3,7 @@ package com.example.studentintern.controller;
 
 import com.example.studentintern.entity.Student;
 import com.example.studentintern.service.StudentService;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
@@ -66,10 +67,10 @@ public class StudentController {
     }
     @Scope()
     @PostMapping("save/students/image/{id}")
-    public  ResponseEntity<?> addImage(@PathVariable Long id,
+    public  ResponseEntity<?> addImage(@PathVariable("id") Long id,
                                        @RequestParam("file")MultipartFile multipartFile) throws IOException {
         Student student = studentService.getStudentsById(id);
-        Byte[] image= new Byte[multipartFile.getBytes().length];
+        byte[] image= new byte[multipartFile.getBytes().length];
         int i= 0;
         for (byte b: multipartFile.getBytes()) {
             image[i++] = b;

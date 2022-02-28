@@ -28,7 +28,7 @@ public class Student implements Serializable {
     private String location;
 
     @Lob
-    private Byte[] image ;
+    private byte[] image ;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="student")
     @JsonManagedReference(value = "schedule")

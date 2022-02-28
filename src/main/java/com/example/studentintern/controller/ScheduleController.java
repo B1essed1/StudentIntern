@@ -10,6 +10,7 @@ import com.example.studentintern.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
@@ -36,11 +37,10 @@ public class ScheduleController {
     }
 
     @GetMapping("/get/daily")
+    @Transactional
     public ResponseEntity<?> getDailySchedule(@RequestBody TodaysReg reg){
 
         List<Schedules> list = scheduleService.getSchedulesByDate(reg.getDate(),reg.getId());
-
-
 
         return ResponseEntity.ok(list);
     }
