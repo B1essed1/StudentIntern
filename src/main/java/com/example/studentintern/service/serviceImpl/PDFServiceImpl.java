@@ -100,8 +100,6 @@ public class PDFServiceImpl implements PDFService {
         document.add(paragraphStack);
         document.add(list);
 
-
-
         document.close();
 
     }

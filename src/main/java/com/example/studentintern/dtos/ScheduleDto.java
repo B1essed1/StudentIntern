@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
-public class ScheduleDto {
+public class   ScheduleDto {
      private Long id;
      private Boolean isWork;
 
