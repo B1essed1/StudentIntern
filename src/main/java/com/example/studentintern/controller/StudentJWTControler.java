@@ -49,10 +49,6 @@ public class StudentJWTControler {
         map.put("username", user.getUsername());
         map.put("token", token);
 
-        log.info("token map  {}" ,map);
-        log.error("token map  {}" ,map);
-        log.debug("token map  {}" ,map);
-
         return ResponseEntity.ok(map);
     }
 }
